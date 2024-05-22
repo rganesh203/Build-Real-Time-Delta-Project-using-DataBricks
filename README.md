@@ -3,9 +3,29 @@
 ![image](https://github.com/rganesh203/Build-Real-Time-Delta-Project-using-DataBricks/assets/68594076/29380ca1-f0d7-4614-80b8-98d1bc3178a7)
 
 ### Databricks Delta Live Tables
-Data pipelines are crucial for moving data from source systems into data warehouses and lakes. But as data volumes explode exponentially, building and managing efficient data pipelines becomes highly complex. Databricks Delta Live Tables are specifically built to simplify this issue and helps in development by allowing you to build reliable, maintainable, and testable data pipelines in Databricks. You can define the transformations to perform on your data, and Delta Live Tables manage task orchestration, cluster management, monitoring, data quality, error handling—and everything in between.
+### What Are Delta Live Tables?
+### How are Delta Live Tables, Delta Tables, and Delta Lake related?
+### Breaking Down The Components Of Delta Live Tables
+    ### Dataset Type	
+          Streaming Table
+          Materialized Views	
+          Views
+### When to Use Views or Materialized Views in Delta Live Tables
+### What Are the Advantages of Delta Live Tables?
+    There are many benefits to using a Delta Live Table, including simpler pipeline development, better data quality standards, and support for unified real time and batch analytics. 
+    Unified streaming/batch experience. By removing the need for data engineers to build distinct streaming / batch data pipelines, DLT simplifies one of the most difficult pain points of working with data,          thereby offering a truly unified experience.
+    Opinionated Pipeline Management. The modern datastack is filled with orchestration players, observability players, data quality players, and many others. That makes it difficult, as a platform manager, to        not only select how to configure the standard/template data stack, but also how to enforce those standards. DLT offers an opinionated way to orchestrate and assert dataquality.
+      Performance Optimization. DLTs offer the full advantages of Delta Tables, which are designed to handle large volumes of data and support fast querying, as their vectorized query execution allows them to process data in batches rather than one row at a time. This makes them ideal not just for real-time data ingestion but cleaning of large datasets.
+      Management. Delta Live Tables automate away, otherwise manual tasks, such as compactions or selection of job execution order.  Tests by Databricks show that with the use of automatic orchestration, DLT was 2x faster than the non-DLT Databricks baseline, as DLT is better at orchestrating tasks than humans (meaning, they claim DLT is better at determining and managing table dependencies).
+      Built-in Quality Assertions. Delta Live Tables also provide some data quality features, such as data cleansing and data deduplication, out of the box. Users can specify rules to remove duplicates or cleanse data as data is ingested into a Delta Live Table, ensuring data accuracy. DLT automatically provides real-time data quality metrics to accelerate debugging and improve the downstream consumer’s trust in the data.
+      ACID Transactions. Because DLTs use Delta format they support ACID transactions (Atomicity, Consistency, Isolation and Durability) which has become the standard for data quality and exactness.
+      Pipeline Visibility. Another one of the benefits of Delta Live Tables is a Directed Acyclic Graph of your data pipeline workloads. In fact, this is one of the bigger reasons that DBT adoption has occured at the speed it has. Simply visualizing your data pipelines has been a common challenge. DLT DLT gives you a clear, visually compelling way to both see and introspect your pipeline at various points.
+      Better CDC. Another large improvement in DLT is the ability to use Change Data Capture (CDC)  including support for Slowly Changing Dimensions Type 2 just by setting the enableTrackHistory parameter in the configuration. This is a data history tracking feature incredibly useful for audits and maintaining consistency across datasets. We dive a bit further into this below.
+      Data pipelines are crucial for moving data from source systems into data warehouses and lakes. But as data volumes explode exponentially, building and managing efficient data pipelines becomes highly complex. Databricks Delta Live Tables are specifically built to simplify this issue and helps in development by allowing you to build reliable, maintainable, and testable data pipelines in Databricks. You can define the transformations to perform on your data, and Delta Live Tables manage task orchestration, cluster management, monitoring, data quality, error handling—and everything in between.
 
 In this article, we will provide an in-depth overview of Databricks Delta Live Tables and walk through examples of how to create Delta Live Tables using SQL. We will also discuss the limitations and challenges of this approach.
+### What To Know About Change Data Capture (CDC) in Delta Live Tables
+### What is the cost of Delta Live Tables?
 
 What Are the Hurdles of Building Data Pipelines the Traditional Way?
 In the past, companies had to build their data pipelines entirely from the ground up. This involved writing custom code and using orchestration tools like  Apache Airflow and Apache Spark to manage the flow of data. Developing these pipelines from scratch was a complex and time-consuming process, and it was easy for errors to creep in along the way. Maintaining and updating these custom-built pipelines also required significant effort and resources. Even a tiny bug could bring the entire pipeline crashing down.
